@@ -1,0 +1,178 @@
+[33mcommit 22e548c3db4bf9883aac76489d655dacc313f7d0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Simon Barthelmé <simon.barthelme@gipsa-lab.fr>
+Date:   Fri Aug 26 17:51:16 2022 +0200
+
+    Added some feedback
+
+[33mcommit a5b57a09bf206208abca153ca92358aaf71961ea[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Fri Aug 26 10:51:58 2022 +0200
+
+    Add files via upload
+
+[33mcommit 79a3670aac287bb137a5300f7685057ac9333672[m
+Author: simon <simon.barthelme@gipsa-lab.fr>
+Date:   Tue Aug 23 13:41:20 2022 +0200
+
+    git info
+
+[33mcommit 7e62ed3c3b56e805ee83049f77db8cacf536e076[m
+Author: simon <simon.barthelme@gipsa-lab.fr>
+Date:   Tue Aug 23 13:38:21 2022 +0200
+
+    added dummy modification
+
+[33mcommit 1811a70129e36ea76888a40f5b68aeab52d483dd[m
+Author: simon <simon.barthelme@gipsa-lab.fr>
+Date:   Tue Aug 23 13:36:33 2022 +0200
+
+    added tex source
+
+[33mcommit 887bbb2fbca84376a0875269eb0d3afb3b9c67e5[m
+Merge: 4f06865 f7169cd
+Author: simon <simon.barthelme@gipsa-lab.fr>
+Date:   Tue Aug 23 13:32:30 2022 +0200
+
+    Merge branch 'main' of github.com:mgjorgje/LPMs-GNW into main
+
+[33mcommit 4f06865eb6a17a996de97dacd5a4366827cdfe17[m
+Author: simon <simon.barthelme@gipsa-lab.fr>
+Date:   Tue Aug 23 13:28:55 2022 +0200
+
+    small modification to README
+
+[33mcommit f7169cd5e4729cac547c909f029cc691fdd9ca2f[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon Aug 22 09:27:16 2022 +0200
+
+    Add files via upload
+
+[33mcommit 2a1fb9dfdb7927ea396257aa643758e1c7e9ed7c[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Fri Aug 19 10:23:42 2022 +0200
+
+    Add files via upload
+
+[33mcommit f8305b0ab26507a6f8351ae3a70038763e55adad[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Fri Aug 19 10:22:50 2022 +0200
+
+    Add files via upload
+
+[33mcommit 7c52837bca36759d248b644cbd418d29b3b5d1f7[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Tue Aug 16 10:20:27 2022 +0200
+
+    Add files via upload
+
+[33mcommit 56b67bcaa0473e36b0f6a32f6bded6ad70e5df34[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Tue Aug 16 10:18:21 2022 +0200
+
+    Add files via upload
+
+[33mcommit 9e150a22b7d6805198b6ae8d99bdfe961a905ec0[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon Jul 18 11:51:53 2022 +0200
+
+    Add files via upload
+
+[33mcommit c84c7429ceaf43f90f6933c64591aaa4802e3549[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon Jul 18 11:43:54 2022 +0200
+
+    Add files via upload
+
+[33mcommit 2f8ca3a9850282976809184fd22bd00fed641976[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Wed Jul 6 16:06:21 2022 +0200
+
+    Add files via upload
+
+[33mcommit 94a591c7a44928c34057c5e7f73ccac4dff05050[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Thu Jun 30 09:54:01 2022 +0200
+
+    Add files via upload
+
+[33mcommit 4565b92c697b3e050205b6c5d3b049248b9824e8[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Wed Jun 15 18:09:16 2022 +0200
+
+    Add files via upload
+
+[33mcommit 2d0b88fbfc3b76f3317bdd7f43a6394746eb0d9e[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Thu Jun 9 18:31:55 2022 +0200
+
+    Add files via upload
+
+[33mcommit 35bd1e7609340e1028c1db9a8f9ff24f77086795[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Thu Jun 2 09:40:02 2022 +0200
+
+    Add files via upload
+
+[33mcommit a14904838f45f0d765a152f492644753cb5a289e[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon May 30 10:46:04 2022 +0200
+
+    Add files via upload
+
+[33mcommit a00588e4fe3d4e6cfa58128d7d4f29cfd0d2e03d[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon May 30 10:39:41 2022 +0200
+
+    Add files via upload
+
+[33mcommit 5907218f9a3280d3482a5dd8fb435bf447b2af27[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon May 30 10:36:48 2022 +0200
+
+    Add files via upload
+
+[33mcommit 5f1d7c6d6b21b0932ff5a5814b6cf621e0a8fcfe[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon May 30 10:33:29 2022 +0200
+
+    Add files via upload
+
+[33mcommit 51b8fc9d20b81e22affbc1cdd27e2f74721873ed[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon May 30 10:30:46 2022 +0200
+
+    Add files via upload
+
+[33mcommit 195388aadad7d89d02b8a3736cdc4393bd11ead2[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Mon May 30 10:25:07 2022 +0200
+
+    Add files via upload
+
+[33mcommit 30b0b02a4d3dc5cce9205a849f7301ca4a1f68bd[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Fri May 20 13:16:30 2022 +0200
+
+    Add files via upload
+    
+    Risk analysis and simulations added
+
+[33mcommit a1bbfc45b3d69b9b66fed67446ebed7cc0a3a7b7[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Thu May 12 08:27:35 2022 +0200
+
+    Update README.md
+    
+    I've made small changes to the main text and also I've added simulations in the report.
+
+[33mcommit effa4339e7acad228ad90e4681f330b76b424aa7[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Thu May 12 08:25:11 2022 +0200
+
+    Add files via upload
+
+[33mcommit 475d0dd8f566c31f1e7f8af9575b8fd6572f60c9[m
+Author: mgjorgje <102661211+mgjorgje@users.noreply.github.com>
+Date:   Thu May 12 08:19:54 2022 +0200
+
+    Initial commit
