@@ -146,9 +146,7 @@ Nonasimptotically, the following holds:
     \item $X_1,...X_n,X$ i.i.d. $\sim p$, $p$ a density on $\mathbb{R}^d$
     \textit{\textbf{not observed}}
     \item $k_n:\mathbb{R}^d\to [0,1]$ probability kernel 
-    \item $a(X_i,X_j)=bern(k(X_i,X_j))$
-\end{itemize}
-\begin{itemize}
+    \item $a(X_i,X_j)=bern(k_n(X_i,X_j))\colon=\mathbb{I}(k_n(X_i,X_j)\leq U_{i,j})$
     \item $Y_i-f(X_i)+\epsilon_i$, $\epsilon=(\epsilon_1,...,\epsilon_n)$ indepednent from $(X_1,...,X_n)$, $\mathbb{E}\epsilon_i=0$, $\mathbb{E}\epsilon_i^2
     =\sigma^2<\infty$
 \end{itemize}
@@ -159,7 +157,7 @@ Nonasimptotically, the following holds:
 
 \begin{block}{Sharp Variance Bound}
 
-\mycolbackwhite{Suppose that $f$ is a bounded measurable function with $||f||_{\infty}\leq B$ and $\mathbb{E}(\epsilon_1^2)=\sigma^2>0$. Then
+\mycolbackwhite{Suppose that $f\colon\mathbb{R}^d\to\mathbb{R}$ is such that $||f||_{\infty}\leq B$ and $\mathbb{E}(\epsilon_1^2)=\sigma^2>0$. Then
 \begin{equation*}
     \frac{\sigma^2(1-e^{-d_n(x)})}{d_n(x)}\leq \mathbb{E}(\hat{f}_{GNW}(x)-b_n(f,x))^2\leq \frac{C(B,\sigma^2)}{d_n(x)}
 \end{equation*}
@@ -188,9 +186,9 @@ and $R_{I\cup J}(x)$ is \myemphh{independent} from $\{a(x,X_i)|i\in I\}$.
 \begin{block}{Simulations}
 \begin{figure}
     \centering
-    \includegraphics[width=0.3\textwidth]{SSLAN_f_3_gaussian.png}
-    \includegraphics[width=0.3\textwidth]{MSMN_f_3_gaussian.png}
-    \includegraphics[width=0.3\textwidth]{LSLN_f_3_gaussian.png}
+    \includegraphics[width=0.4\textwidth]{SSLAN_f_3_gaussian.png}
+    \includegraphics[width=0.4\textwidth]{MSMN_f_3_gaussian.png}
+    \includegraphics[width=0.4\textwidth]{LSLN_f_3_gaussian.png}
     \caption{Comparison of GNW and NW}
     \label{fig:simulations}
 \end{figure}
