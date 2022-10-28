@@ -1,20 +1,18 @@
+%Packages and stuff
+
 \documentclass[final,dvipsnames]{beamer}
 %% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
 %% Possible orientations: portrait, landscape
 %% Font sizes can be changed using the scale option.
 \usepackage[size=a0,orientation=portrait,scale=1.5,debug]{beamerposter}
-%\graphicspath{{./img/}}
-%\mode<presentation>\usetheme{inriaposter}
-
-%\makeatletter
+%\mode<presentation>{\usetheme{inriaposter}}
 \usetheme{LLT-poster}
 \usecolortheme{ComingClean}
 %\usecolortheme{Entrepreneur}
-%\usecolortheme{ConspiciousCreep}  %% VERY garish.
+%\usecolortheme{ConspiciousCreep}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
-%\usepackage{libertine}
+\usepackage{libertine}
 \usepackage[scaled=1]{inconsolata}
 %\usepackage[libertine]{newtxmath}
 \usepackage{amsmath,amsfonts,amssymb,pxfonts,eulervm,xspace}
@@ -27,172 +25,232 @@
 \usepackage{xcolor}
 
 
+%---------------------------------------
+
+%---------------------------------------------------------------------------------------%
+
+%CUSTOM COMMANDS
 \newcommand{\myemph}[1]{\textcolor{blue}{#1}}
 \newcommand{\myemphh}[1]{\textbf{\textcolor{blue}{#1}}}
-
+\newcommand{\myemphr}[1]{\textbf{\textcolor{red}{#1}}}
 
 
 \newcommand{\mycolbackwhite}[1]{
 \hspace*{.01\linewidth}\begin{minipage}{.96\linewidth}
-\begin{mdframed}[backgroundcolor=white!10,linewidth=1pt]
+\begin{mdframed}[backgroundcolor=white!10,linewidth=3pt]
 \vspace{10pt}
 #1
 \vspace{10pt}
 \end{mdframed}
 \end{minipage}
 }
+
+\newcommand{\mycolbackblue}[1]{
+\hspace*{.01\linewidth}\begin{minipage}{.96\linewidth}
+\begin{mdframed}[backgroundcolor=blue!10,linewidth=3pt]
+\vspace{10pt}
+#1
+\vspace{10pt}
+\end{mdframed}
+\end{minipage}
+}
+
+\newcommand{\mycolbackred}[1]{
+\hspace*{.01\linewidth}\begin{minipage}{.40\linewidth}
+\begin{mdframed}[backgroundcolor=red!10,linewidth=3pt]
+\vspace{10pt}
+#1
+\vspace{10pt}
+\end{mdframed}
+\end{minipage}
+}
+
+\newcommand{\mycolbackgreen}[1]{
+\hspace*{.01\linewidth}\begin{minipage}{.35\linewidth}
+\begin{mdframed}[backgroundcolor=green!10,linewidth=1pt]
+\vspace{10pt}
+#1
+\vspace{10pt}
+\end{mdframed}
+\end{minipage}
+}
+
+\newcommand{\mycolbackgreenw}[1]{
+\hspace*{.01\linewidth}\begin{minipage}{.96\linewidth}
+\begin{mdframed}[backgroundcolor=blue!10,linewidth=1pt]
+\vspace{10pt}
+#1
+\vspace{10pt}
+\end{mdframed}
+\end{minipage}
+}
+
+
+
 \DeclareMathOperator\supp{supp}
 \DeclareMathOperator\argmin{argmin}
 \DeclareMathOperator\Bern{Bern}
-\author[Martin.Gjorgjevski@gipsa-lab.grenoble-inp.fr]{Martin Gjorgjevski}
-\title{The Graphical Nadaraya Watson Estimator on Latent Postion Models}
-\institute{GIPSA-lab, Grenoble}
 
 
-\usepackage[style=alphabetic-verb]{biblatex}
-\addbibresource{references.bib}
+%---------------------------------------------------------------------------------------%
+%Title, author, etc
+
+
+
+
+\title{Graphical Nadaraya-Watson Estimator on Latent Position Models}
+\author{Martin Gjorgjevski$^1$, Nicolas Keriven$^1$, Simon Barthelme$^1$, Yohann De Castro$^2$}
+\institute{$^1$CNRS Gipsa-Lab, Grenoble, $^2$CNRS Ecole Centrale Lyon, Lyon}
+
+
+
+
+%--------------------------------------------------------------------------------------%
 
 \begin{document}
 \begin{frame}
-\begin{columns}[T]
-%%%% First Column
-\begin{column}{0.38\textwidth}
 
 \begin{block}{Summary}
-\begin{itemize}
-\item We derive \textbf{sample complexities} and \textbf{generalization bounds} for a signal averaging estimator on graphs
-\item  Analysis valid for general  \myemphh{Latent Position Models}
-\end{itemize}
-\end{block}
-\begin{block}{Notation}
-All random variables belong to a joint probability space $(\Omega,\mathcal{F},\mathbb{P})$
+    The \textit{\myemphh{Graphical Nadaraya Watson}} Estimator $\hat{f}_{GNW}$ is a signal averaging estimator on graphs, inspired by the \textit{\myemphr{Nadaraya-Watson Estimator}} $\hat{f}_{NW}$ in nonparametric estimation. 
+    We study concentration properties and risk decay rates of $\hat{f}_{GNW}$ in terms of the growth of the degree of a vertex. We show that under mild assumptions, the estimator concentrates with a rate that decreases
+    \textit{exponentially} in the degree of a vertex. We also show that for smooth signals $\hat{f}_{GNW}$ and $\hat{f}_{NW}$ achieve similar risk rates.    
+\end{block}    
+
+\begin{columns}[T]
+
+    
+
+%%%% First Column
+\begin{column}{0.48\textwidth}
+\begin{block}{Framework: \textit{Latent Position Models}}
 \vspace{20pt}
 \begin{itemize}
-    \item $\mathbb{E}(F(X,X_1,..,X_n,X,U_1,U_2,...,U_n,\epsilon_1,...,\epsilon_n)$- expectation taken over every variable 
-    \item $\mathbb{E}_{x} (\cdot)=\mathbb{E}(\cdot|X=x)$ conditional expectation 
-    \item $d_n(x)=\mathbb{E}_{x}(\sum_{i=1}^n a(X,X_i))$-local expected degree at $x\in\mathbb{R}^d$
-    \item $b_n(f,x)=\begin{cases}
-    \frac{\int f(z)k_n(x,z)p(z)dz}{\int k_n(x,z)p(z)dz} \quad &\text{if}\ d_n(x)> 0\\
-    0 \quad &\text{otherwise}\\
-    \end{cases}$
-    \item $Q=\supp{p}$
+\item $X_1,...X_n,X$ i.i.d. $\sim p$, $p$ a density on $\mathbb{R}^d$
+\textit{not observed}
+\vspace{10pt}
+\item $k_n:\mathbb{R}^d\to [0,1]$ \textit{probability kernel} 
+\vspace{10pt}
+\item $a(X_i,X_j)=bern(k_n(X_i,X_j))$ \textit{edge between nodes $i$ and $j$}
+\vspace{10pt}
+\item $Y_i-f(X_i)+\epsilon_i$, $\epsilon=(\epsilon_i)_{i=1}^n$ \textit{noise independent from} $(X_i)_{i=1}^n$, with $\mathbb{E}\epsilon_i=0$, $\mathbb{E}\epsilon_i^2
+=\sigma^2<\infty$ 
+\vspace{10pt}
+\item $d_n(x)=\mathbb{E}(\sum_{i=1}^n a(X,X_i)|X=x)$ \textit{local expected degree at $x$}
 \end{itemize}
-\end{block}
-
-\begin{block}{The GNW Estimator}
-\begin{equation}
-    \hat{f}_{GNW}(X)=\begin{cases}
-    \frac{\sum_{i=1}^n Y_i a(X,X_i)}{\sum_{i=1}^n a(X,X_i)} \quad &\text{if}\,\sum a(X,X_i)\neq 0\\
-    0 \quad &\text{otherwise}\\
-    \end{cases}
-\end{equation}
 \vspace{20pt}
-\begin{itemize}
-    \item \textit{How does} $\mathbb{E}_{x}(\hat{f}_{GNW}(X)-b_n(f,X))^2$ \textit{depend on} $d_n(x)$?
-    \item \textit{For \textbf{convolutional kernels} and \myemphh{smooth signals},   
-    how does} $\mathbb{E}
-(\hat{f}_{GNW}(X)-f(X))^2$ \textit{depend on the bandwith} $h_n$?
-\end{itemize}
-
+\mycolbackgreen{
+    \textit{Goal: \textbf{Estimate} $f(X)$}
+}
 \begin{figure}
     \centering
-   \includegraphics[width=1\textwidth]{fresh_for_marseille.png}
+    \includegraphics[width=0.8\textwidth]{lpm_image_correct.png}
+    \caption{Left- latent positions, Right - Latent Position Random Graph}
+    \label{fig:my_label}
+    \end{figure}
 
-    \caption{Left- Graph with $\sim \log n$ average degree, Right- Graph with $\sim \log(\log(n))$ average degree}
-    \label{fig:sparse_graphs}
-\end{figure}
+
 \end{block}
+\begin{block}{Main Result}
+LLN heuristics: by setting $b_n(f,x)=\dfrac{\int f(z)k_n(x,z)p(z)dz}{\int k_n(x,z)p(z)dz}$ we have 
+\begin{equation*}
+    \hat{f}_{GNW}(x)\sim b_n(f,x)
+\end{equation*}
+\vspace{10pt}
+Suprisingly, we can compute
+\begin{equation*}
+    \mathbb{E}(\hat{f}_{GNW}(x))=b_n(f,x)(1-(1-\frac{d_n(x)}{n})^n)
+\end{equation*}
 
-\begin{block}{MISE bound for convolutional kernels}
-Convolutional kernels $k_n(x,z)=K(\frac{x-z}{h_n})$ with $K\colon\mathbb{R}^d\to [0,1]$, $h_n>0$.
-\vspace{20pt}
-Going from $\mathbb{E}_{x}(\cdot)$ to $\mathbb{E}(\cdot)$:
-\vspace{20pt}
-\begin{itemize}
-    \item Bounds on $|b_n(f,x)-f(x)|$ (the \myemphh{bias} term) 
-    \item Asymptotically $d_n(x)\sim nh_n^dp(x)$ (\textbf{Lebesgue Density theorem})
-\end{itemize}
-\vspace{20pt}
-Nonasimptotically, the following holds:
-\vspace{20pt}
-\mycolbackwhite{
-\vspace{20pt}
-\begin{itemize}
-    \item $K$ compactly supported 
-    \item $p(x)\geq p_0>0$ on $Q$ and $Q$ \textit{satisfies \myemph{interior cone con dition}}
-    \item f is $\alpha$ Hölder continnous on $Q$
-        \end{itemize}
-
-        then for sufficiently small bandwiths $h_n$
-        \begin{equation*}
-            \mathbb{E}(\hat{f}_{GNW}(X)-f(X))^2\leq C_1(\alpha)h_n^{\alpha}+\frac{C(B,\sigma)}{nh_n^d}
-        \end{equation*}
-        }
+\mycolbackwhite{\textbf{Theorem}
+    \vspace{20pt}
+    \\
+    If $f\colon\mathbb{R}^d\to\mathbb{R}$ is s.t. $||f||_{\infty}\leq B$ and $\mathbb{E}(\epsilon_1^2)=\sigma^2$. 
+    Then
+    \begin{equation*}
+        \frac{\sigma^2(1-e^{-d_n(x)})}{d_n(x)}\leq \mathbb{E}(\hat{f}_{GNW}(x)-b_n(f,x))^2\leq \frac{C(B,\sigma^2)}{d_n(x)}
+    \end{equation*}
+    }
+    \vspace{20pt}
+    \begin{itemize}
+        \item  As soon as $d_n(x)\to\infty$, the \textit{variance term} tends to $0$ 
+        \item  Left to bound $|b_n(f,x)-f(x)|$ (the \myemphh{bias} term) %\hspace*{\fill}{\textcolor{ForestGreen}{EASY}\qquad}
+        \item  $d_n(x)\sim nh_n^dp(x)$ (\textit{Lebesgue Density theorem})
+    \end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{fresh_for_marseille.png}
+        \caption{Sparse random graphs. Left: $d_n(x)\sim\log(n)$, Right: $d_n(x)\sim\log(\log(n))$}
+    \end{figure}
 \end{block}
 \end{column}
 
 %%%% Second Column
-\begin{column}{.6\textwidth}
-\begin{block}{Framework}
 
-\textit{Latent Position Models}:
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{lpm_image_correct.png}
-    \caption{Left- latent positions, Right - Latent Graph Random Graph}
-    \label{fig:my_label}
-\end{figure}
-\begin{itemize}
-    \item $X_1,...X_n,X$ i.i.d. $\sim p$, $p$ a density on $\mathbb{R}^d$
-    \textit{\textbf{not observed}}
-    \item $k_n:\mathbb{R}^d\to [0,1]$ probability kernel 
-    \item $a(X_i,X_j)=bern(k_n(X_i,X_j))\colon=\mathbb{I}(k_n(X_i,X_j)\leq U_{i,j})$
-    \item $Y_i-f(X_i)+\epsilon_i$, $\epsilon=(\epsilon_1,...,\epsilon_n)$ indepednent from $(X_1,...,X_n)$, $\mathbb{E}\epsilon_i=0$, $\mathbb{E}\epsilon_i^2
-    =\sigma^2<\infty$
-\end{itemize}
-
-\end{block}
-
-
-
-\begin{block}{Sharp Variance Bound}
-
-\mycolbackwhite{Suppose that $f\colon\mathbb{R}^d\to\mathbb{R}$ is such that $||f||_{\infty}\leq B$ and $\mathbb{E}(\epsilon_1^2)=\sigma^2>0$. Then
+\begin{column}{0.48\textwidth}
+\begin{block}{The \myemphr{NW} and \myemphh{GNW} estimators}
+\small When the positions $X_1,....X_n$ are known, a popular approach is \myemphr{Nadaraya-Watson} Estimator
 \begin{equation*}
-    \frac{\sigma^2(1-e^{-d_n(x)})}{d_n(x)}\leq \mathbb{E}(\hat{f}_{GNW}(x)-b_n(f,x))^2\leq \frac{C(B,\sigma^2)}{d_n(x)}
+    \hat{f}_{NW}(X)=\frac{\sum_{i=1}^n Y_iK(\frac{X-X_i}{h_n})}{\sum_{i=1}^n K(\frac{X-X_i}{h_n})}
+    \end{equation*}
+\small In the LPM setting, we consider 
+\myemphh{Graphical Nadaraya-Watson} Estimator
+    \begin{equation*}
+        \hat{f}_{GNW}(X)=\frac{\sum_{i=1}^n Y_i a(X,X_i)}{\sum_{i=1}^n a(X,X_i)}
+    \end{equation*}
+
+\small The $L^2$ risk of the \myemphr{NW} estimator admits the bias-variance decomposition 
+\vspace{10pt}
+\begin{equation*}
+    \mathbb{E}(\hat{f}_{NW}(x)-f(x))^2=\mathbb{V}(\hat{f}_{NW}(x))+(\mathbb{E}(\hat{f}_{NW}(x))-f(x))^2
 \end{equation*}
+\mycolbackgreenw{\textbf{Questions}
+\vspace{10pt}
+\begin{center}
+    \begin{enumerate}
+        \item How does the quality of $\hat{f}_{GNW}$ depend on the degree ?
+        \vspace{10pt}
+        \item How does the $L^2$ risk of $\hat{f}_{GNW}$ compare to that of $\hat{f}_{NW}$?
+    \end{enumerate}
+\end{center}
 }
 \end{block}
-
-
 \begin{block}{Proof Sketch - the Decoupling trick}
-Let $I\subseteq [n]$. Define\footnote{with the convention that $1/0=0$}  
-\begin{equation*}
-    R_I(x)=
-    \frac{1}{|I|+\sum_{j\notin I}a(x,X_i)}
-\end{equation*}
-For all pairs of \textbf{disjoint} subsets $I,J\subseteq$[n] we have
-\begin{equation*}
-R_J(x)\prod_{i\in I}a(x,X_i)=R_{I\cup J}(x)\prod_{i\in I}a(x,X_i)
-\end{equation*}
-and $R_{I\cup J}(x)$ is \myemphh{independent} from $\{a(x,X_i)|i\in I\}$.
-\vspace{20pt}
-\begin{itemize}
-    \item "Linearized" representation 
- $\hat{f}_{GNW}(x)=\sum_{i=1}^nY_ia(x,X_i)R_i(x)$
-\item Difficult computations become tractable e.g. $\mathbb{E}(\hat{f}_{GNW}(x))=b_n(f,x)(1-d_n(x)/n)^n$  
-\end{itemize}
+    For $I\subseteq [n]$. Define\footnote{with the convention that $1/0=0$}  
+    \begin{equation*}
+        R_I(x)=
+        \frac{1}{|I|+\sum_{j\notin I}a(x,X_i)}
+    \end{equation*}
+    For all pairs of \textbf{disjoint} subsets $I,J\subseteq$[n] we have
+    \begin{equation*}
+    R_J(x)\prod_{i\in I}a(x,X_i)=R_{I\cup J}(x)\prod_{i\in I}a(x,X_i)
+    \end{equation*}
+    \small and $R_{I\cup J}(x)$ is \textbf{\textit{independent}} from $\{a(x,X_i)|i\in I\}$.
+    \vspace{20pt}
+    \begin{itemize}
+        \small \item "Linearized" representation 
+     $\hat{f}_{GNW}(x)=\sum_{i=1}^nY_ia(x,X_i)R_i(x)$  
+    \end{itemize}
 \end{block}
-\begin{block}{Simulations}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.4\textwidth]{SSLAN_f_3_gaussian.png}
-    \includegraphics[width=0.4\textwidth]{MSMN_f_3_gaussian.png}
-    \includegraphics[width=0.4\textwidth]{LSLN_f_3_gaussian.png}
-    \caption{Comparison of GNW and NW}
-    \label{fig:simulations}
-\end{figure}
-\end{block}
+\begin{block}{MISE bound for convolutional kernels}
+    Convolutional kernels $k_n(x,z)=K(\frac{x-z}{h_n})$ with $K\colon\mathbb{R}^d\to [0,1]$, $h_n>0$.
+    \vspace{10pt}
+    %\mycolbackblue{
+    \textbf{Theorem}
+    \vspace{10pt}
+    \begin{itemize}
+        \small \item $K$ compactly supported 
+        \small \item $p(x)\geq p_0>0$ on $Q$ and $Q$ \textit{satisfies \myemph{interior cone condition}}
+        \small \item f is \textit{$\alpha$ Hölder continnous on $\supp{p}$}
+        \vspace{10pt}
+            \end{itemize}
+            \small then for sufficiently small bandwiths $h_n$ we have
+            \begin{equation*}
+                \mathbb{E}(\hat{f}_{GNW}(X)-f(X))^2\leq C_1(\alpha)h_n^{\alpha}+\frac{C(B,\sigma)}{nh_n^d}
+            \end{equation*}
+            %}
+    \end{block}
+
+
 \end{column}
 \end{columns}
 \end{frame}

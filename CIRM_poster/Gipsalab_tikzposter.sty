@@ -1,0 +1,362 @@
+%_______________________________________________________________________________
+%<identification>
+\ProvidesPackage{Gipsalab_tikzposter}[2016/03/30 1.0]
+%_______________________________________________________________________________
+%_______________________________________________________________________________
+%<initial code>
+\newcommand{\comment}[1]{}
+\RequirePackage{tikz}%
+\usetikzlibrary{calc}% 
+\RequirePackage{calc}%
+%
+\newcommand{\GipsalabAddress}{{\bf Grenoble Images Parole Signal Automatique}\\[1ex]
+UMR CNRS 5216 - Grenoble Campus\\
+38400 Saint Martin d'Hères - FRANCE}
+\renewcommand{\and}{\\}%
+% set lengths
+% W: width
+% H: height
+\newlength{\GipsalabPaperW}%
+\newlength{\GipsalabPaperH}%
+\newlength{\GipsalabW}%
+\newlength{\GipsalabTopH}%
+\newlength{\GipsalabTopHGipsalabLogo}%
+\newlength{\GipsalabTopWTitle}%
+\newlength{\GipsalabTopWLogos}%
+\newlength{\GipsalabBottomH}%
+\newlength{\GipsalabBottomWBox}%
+\newlength{\GipsalabBottomWAddress}%
+\newlength{\GipsalabBottomHLogos}%
+\newlength{\GipsalabAdjustVSpace}%
+\newlength{\GipsalabAdjustHSpace}%
+\newlength{\GipsalabAddTopX}%
+\newlength{\GipsalabAddTopY}%
+\newlength{\GipsalabAddBottomX}%
+\newlength{\GipsalabAddBottomY}%
+\newlength{\GipsalabTopDeltaWGipsalabLogo}%
+\newlength{\GipsalabTopDeltaW}%
+\newlength{\GipsalabBottomDeltaW}%
+\newlength{\GipsalabDeltaW}%
+\newlength{\AuthorHeight}
+\newlength{\AuthorDepth}
+\newlength{\GipsalabTemp}
+\newlength{\TitleHeight}
+\newlength{\TitleDepth}
+%
+\definecolor{Gipsalab_violet}{RGB}{86,46,90}
+\definecolor{Gipsalab_blue}{RGB}{0,88,156}
+\definecolor{Gipsalab_beige}{RGB}{232,225,208}
+\definecolor{Gipsalab_DAuto}{RGB}{174,52,98}
+\definecolor{Gipsalab_Dis}{RGB}{77,139,176}
+\definecolor{Gipsalab_DPC}{RGB}{164,178,36}
+\definecolor{Gipsalab_I}{RGB}{77,139,176} % Dis blue
+\definecolor{Gipsalab_II}{RGB}{174,52,98} % DAuto red
+\definecolor{Gipsalab_III}{RGB}{164,178,36} % DPC green 
+\definecolor{Gipsalab_IV}{RGB}{0,88,156} % blue 
+\definecolor{Gipsalab_V}{RGB}{232,225,208} % beige
+
+\def\@title{~}
+\def\title#1{\gdef\@title{#1}}
+%...............................................................................
+% \and
+%\renewcommand{\and}{\\[\baselineskip]}
+\renewcommand{\and}{\\}
+%...............................................................................
+%...............................................................................
+% \TitleParbox
+\newcommand{\TitleParbox}[2]{\parbox{#1}{\flushright \Huge \color{Gipsalab_beige} #2}}
+%...............................................................................
+%...............................................................................
+% \AuthorParbox
+\newcommand{\AuthorParbox}[2]{\parbox{#1}{%
+\vspace{\baselineskip}
+\begin{flushright}\Large #2 \end{flushright}}}
+%...............................................................................
+
+%_______________________________________________________________________________
+%_______________________________________________________________________________
+%<declaration of options>
+% For paper option, values are given for portrait mode.  
+% Permutation of width and height are made for landscape mode. 
+%...............................................................................
+% a5paper: A5 Paper
+\DeclareOption{a5paper}{%
+\setlength{\GipsalabPaperW}{148 mm}%
+\setlength{\GipsalabPaperH}{210 mm}%
+}%
+%...............................................................................
+%...............................................................................
+% a4paper: A4 Paper
+\DeclareOption{a4paper}{%
+\setlength{\GipsalabPaperW}{210 mm}%
+\setlength{\GipsalabPaperH}{297 mm}%
+}%
+%...............................................................................
+%...............................................................................
+% a3paper: A3 Paper
+\DeclareOption{a3paper}{%
+\setlength{\GipsalabPaperW}{297 mm}%
+\setlength{\GipsalabPaperH}{420 mm}%
+}%
+%...............................................................................
+%...............................................................................
+% a2paper: A2 Paper
+\DeclareOption{a2paper}{%
+\setlength{\GipsalabPaperW}{420 mm}%
+\setlength{\GipsalabPaperH}{594 mm}%
+}%
+%...............................................................................
+%...............................................................................
+% a1paper: A1 Paper
+\DeclareOption{a1paper}{%
+\setlength{\GipsalabPaperW}{594 mm}%
+\setlength{\GipsalabPaperH}{841 mm}%
+}%
+%...............................................................................
+%...............................................................................
+% a0paper: A0 Paper
+\DeclareOption{a0paper}{%
+\setlength{\GipsalabPaperW}{841 mm}%
+\setlength{\GipsalabPaperH}{1189 mm}%
+}%
+%...............................................................................
+%...............................................................................
+% portrait: Portrait mode
+\DeclareOption{portrait}{%
+\setlength{\GipsalabW}{0.9048\GipsalabPaperW}%
+% \setlength{\GipsalabTopH}{0.1010\GipsalabPaperH}%
+\setlength{\GipsalabTopH}{0.075\GipsalabPaperH}%
+\setlength{\GipsalabTopHGipsalabLogo}{0.07\GipsalabPaperH}%
+\setlength{\GipsalabBottomHLogos}{0.0471\GipsalabPaperH}%
+\setlength{\GipsalabTopDeltaW}{0.0095\GipsalabPaperW}%
+\setlength{\GipsalabTopWTitle}{0.5\GipsalabPaperW}%
+\setlength{\GipsalabTopDeltaWGipsalabLogo}{0.1190\GipsalabPaperW}%
+\setlength{\GipsalabBottomDeltaW}{0.010\GipsalabPaperW}%
+\setlength{\GipsalabBottomWBox}{0.6\GipsalabPaperW}%
+\setlength{\GipsalabBottomWAddress}{0.3333\GipsalabPaperW}%
+\setlength{\GipsalabBottomH}{0.0539\GipsalabPaperH}%
+\setlength{\GipsalabDeltaW}{0.0476\GipsalabPaperW}%
+}%
+%...............................................................................
+%...............................................................................
+% landscape: Landscape mode
+\DeclareOption{landscape}{%
+% permutation of W and H
+\newlength{\GipsalabPaperWH}
+\setlength{\GipsalabPaperWH}{\GipsalabPaperW}
+\setlength{\GipsalabPaperW}{\GipsalabPaperH}
+\setlength{\GipsalabPaperH}{\GipsalabPaperWH}
+\setlength{\GipsalabW}{0.9327\GipsalabPaperW}%
+\setlength{\GipsalabTopH}{0.10\GipsalabPaperH}%
+\setlength{\GipsalabTopHGipsalabLogo}{0.090\GipsalabPaperH}%
+\setlength{\GipsalabBottomHLogos}{0.0667\GipsalabPaperH}%
+\setlength{\GipsalabTopDeltaW}{0.0067\GipsalabPaperW}%
+\setlength{\GipsalabTopWTitle}{0.65\GipsalabPaperW}%
+\setlength{\GipsalabTopDeltaWGipsalabLogo}{0.0842\GipsalabPaperW}%
+\setlength{\GipsalabBottomDeltaW}{0.03\GipsalabPaperW}%
+\setlength{\GipsalabBottomWBox}{0.63\GipsalabPaperW}%
+\setlength{\GipsalabBottomWAddress}{0.2424\GipsalabPaperW}%
+\setlength{\GipsalabBottomH}{0.0762\GipsalabPaperH}%
+\setlength{\GipsalabDeltaW}{0.0337\GipsalabPaperW}%
+}%
+%...............................................................................
+%_______________________________________________________________________________
+%_______________________________________________________________________________
+%<execution of options>
+\ExecuteOptions{a0paper,portrait}
+\ProcessOptions
+%_______________________________________________________________________________
+%_______________________________________________________________________________
+%<loading of packages>
+%_______________________________________________________________________________
+%_______________________________________________________________________________
+%<main code>
+%...............................................................................
+\pgfdeclareimage[height=0.8\GipsalabBottomHLogos]{logoDpt}{logo3.png}
+\pgfdeclareimage[height=\GipsalabTopHGipsalabLogo]{logoGipsalab}{logoGipsalab_alpha_lr.png}
+\pgfdeclareimage[height=\GipsalabBottomHLogos]{logoCNRS}{logoCNRS_alpha.png}
+\pgfdeclareimage[height=\GipsalabBottomHLogos]{logoINPG}{logoINPG_alpha.png}
+\pgfdeclareimage[height=\GipsalabBottomHLogos]{logoUGA}{logoUGA_alpha.png}
+%...............................................................................
+\definetitlestyle{Gipsalab}{%
+width=750mm, roundedcorners=0, linewidth=0pt, innersep=0mm,
+titletotopverticalspace=10mm, titletoblockverticalspace=60mm,
+titlegraphictotitledistance=0mm}{% 
+}%
+\definecolorpalette{Gipsalab}{%
+\definecolor{colorOne}{named}{Gipsalab_violet}%
+\definecolor{colorTwo}{named}{Gipsalab_beige}%
+\definecolor{colorThree}{named}{Gipsalab_III}%
+}
+\definecolorstyle{Gipsalab}{%
+\definecolor{colorOne}{named}{Gipsalab_violet}%
+\definecolor{colorTwo}{named}{Gipsalab_beige}%
+\definecolor{colorThree}{named}{Gipsalab_III}%
+}{%
+%Background Colors
+\colorlet{backgroundcolor}{white}%
+\colorlet{framecolor}{colorOne}%
+% Title Colors
+\colorlet{titlefgcolor}{colorTwo}%
+\colorlet{titlebgcolor}{colorOne}%
+% Block Colors
+\colorlet{blocktitlebgcolor}{colorOne}
+\colorlet{blocktitlefgcolor}{colorTwo}%
+\colorlet{blockbodybgcolor}{white}%
+\colorlet{blockbodybgcolor}{white}%
+\colorlet{blockbodyfgcolor}{black}%
+% Innerblock Colors 
+\colorlet{innerblocktitlebgcolor}{colorOne!20!white}
+\colorlet{innerblocktitlefgcolor}{colorOne}%
+\colorlet{innerblockbodybgcolor}{colorTwo!20!white}%
+\colorlet{innerblockbodyfgcolor}{black}
+% Note colors
+\colorlet{notefgcolor}{black}%
+\colorlet{notebgcolor}{colorThree!30!white}%
+\colorlet{notefrcolor}{colorOne}%
+}% 
+\definebackgroundstyle{Gipsalab}{}% 
+\defineblockstyle{Gipsalab}{%
+titlewidthscale=0.9, bodywidthscale=1,titleleft, titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0mm, bodyoffsety=15mm, bodyverticalshift=10mm, roundedcorners=5, linewidth=2pt, titleinnersep=6mm, bodyinnersep=1cm}{% 
+\draw[color=framecolor, fill=blockbodybgcolor, rounded corners=\blockroundedcorners] (blockbody.south west) rectangle (blockbody.north east); 
+\ifBlockHasTitle \draw[color=framecolor, fill=blocktitlebgcolor, rounded corners=\blockroundedcorners] (blocktitle.south west) rectangle (blocktitle.north east); \fi}%
+%
+\defineinnerblockstyle{Gipsalab}{}{%
+\draw[color=framecolor, fill=innerblockbodybgcolor, rounded corners=\blockroundedcorners] (innerblockbody.south west) rectangle (innerblockbody.north east);
+\ifBlockHasTitle \draw[color=framecolor, fill=innerblocktitlebgcolor, rounded corners=\blockroundedcorners] (innerblocktitle.south west) rectangle (innerblocktitle.north east); \fi }
+%
+\definenotestyle{Gipsalab}{% 
+targetoffsetx=0pt, targetoffsety=0pt, angle=45, radius=8cm,
+width=6cm, connection=true, rotate=0, roundedcorners=0, linewidth=2pt,
+innersep=8mm}{% 
+\ifNoteHasConnection \draw[thick] (notecenter) -- (notetarget) node{$\bullet$};
+\fi \draw[draw=notefrcolor,fill=notebgcolor,rotate=\noterotate] (notecenter.south west) rectangle (notecenter.north east);
+}% 
+%
+\definelayouttheme{Gipsalab}{
+\usecolorstyle[colorPalette=Gipsalab]{Gipsalab}
+\usebackgroundstyle{Gipsalab}
+\usetitlestyle{Gipsalab}
+\useblockstyle{Gipsalab}
+\useinnerblockstyle{Gipsalab}
+\usenotestyle{Gipsalab}
+}
+%
+\usetheme{Gipsalab}
+%
+% maketitle
+%
+\renewcommand\maketitle[1][]{%
+\setlength{\GipsalabTemp}{\GipsalabTopWTitle}%
+\addtolength{\GipsalabTemp}{\GipsalabTopH}%
+\addtolength{\GipsalabTemp}{\GipsalabTopDeltaW}%
+\addtolength{\GipsalabTemp}{\GipsalabTopDeltaWGipsalabLogo}%
+\settoheight{\TitleHeight}{\TitleParbox{\GipsalabTopWTitle}{\@title}}%
+\settodepth{\TitleDepth}{\TitleParbox{\GipsalabTopWTitle}{\@title}}%
+\addtolength{\TitleHeight}{\TitleDepth}%
+\settoheight{\AuthorHeight}{\AuthorParbox{\GipsalabTopWTitle}{\@author}}%
+\settodepth{\AuthorDepth}{\AuthorParbox{\GipsalabTopWTitle}{\@author}}%
+\addtolength{\AuthorHeight}{\AuthorDepth}%
+%
+% Top figure
+%
+\coordinate (O Top) at ($(-0.5\paperwidth, +0.5\paperheight) + (\GipsalabDeltaW,-\GipsalabTopH - \GipsalabDeltaW)$); 
+\begin{scope}[shift=(O Top), ]
+% Logo Gipsa-lab
+\node at (0.7466 * \GipsalabTopHGipsalabLogo, \GipsalabTopH / 2) [inner sep=0pt] {\pgfuseimage{logoGipsalab}}; 
+% background 
+\fill [Gipsalab_violet] (\GipsalabTopDeltaWGipsalabLogo,0) -- (\GipsalabTemp, 0) -- (\GipsalabTemp, \GipsalabTopH) -- (\GipsalabTopH + \GipsalabTopDeltaWGipsalabLogo, \GipsalabTopH) -- cycle;  
+% title
+\node at (\GipsalabTemp - \GipsalabTopDeltaW, \GipsalabTopH / 2) [left,text width=\GipsalabTopWTitle, inner sep=0, align=flush right, color=Gipsalab_beige] {\TitleParbox{\GipsalabTopWTitle}{\@title}};  
+% author 
+\node at (\GipsalabTemp - \GipsalabTopDeltaW, - \AuthorHeight / 2) [left,text width=\GipsalabTopWTitle, inner sep=0] {\AuthorParbox{\GipsalabTopWTitle}{\@author}}; 
+\fill [shift=(O Top), Gipsalab_violet] (\GipsalabTemp + 1 * \GipsalabTopDeltaW, - \AuthorHeight) rectangle (\GipsalabTemp + 2 *  \GipsalabTopDeltaW, \GipsalabTopH); % Vertical bar
+\node at (\GipsalabTemp + 3 * \GipsalabTopDeltaW, \GipsalabTopH / 2 - \AuthorHeight / 2) [right, align=left, inner sep=0] {\@titlegraphic}; % Logos
+\end{scope}
+%
+% Bottom figure
+%
+\coordinate (O Bottom) at ($(-0.5\paperwidth, -0.5\paperheight) + (\GipsalabDeltaW,\GipsalabDeltaW)$);
+\begin{scope}[shift=(O Bottom), ]
+\fill [Gipsalab_violet] (0,0) -- (\GipsalabBottomWBox - \GipsalabBottomH,0) -- (\GipsalabBottomWBox, \GipsalabBottomH) -- (0,\GipsalabBottomH) -- cycle; 
+\node at (\GipsalabBottomDeltaW, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoDpt}}; % figure
+\node at (\GipsalabBottomWBox, \GipsalabBottomH / 2) [color=Gipsalab_beige, left, text width=\GipsalabBottomWAddress,align=flush left] {\GipsalabAddress}; 
+\node at (\GipsalabBottomDeltaW + \GipsalabBottomWBox, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoCNRS}}; 
+\node at (2 * \GipsalabBottomDeltaW + \GipsalabBottomWBox + 1 * \GipsalabBottomHLogos, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoINPG}}; 
+\node at (3 * \GipsalabBottomDeltaW + \GipsalabBottomWBox + 2.497 * \GipsalabBottomHLogos, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoUGA}}; 
+\end{scope}
+% #1 keys
+\normalsize
+\setkeys{title}{#1}
+% Compute title position
+\setlength{\titleheight}{\GipsalabTopH}
+\addtolength{\titleheight}{\AuthorHeight}
+% \setlength{\TP@titletotopverticalspace}{4cm}
+\setlength{\titleposleft}{-0.5\titlewidth}
+\setlength{\titleposright}{\titleposleft+\titlewidth}
+\setlength{\titlepostop}{0.5\textheight-\TP@titletotopverticalspace}
+\setlength{\titleposbottom}{\titlepostop-\titleheight}
+% \node at (-10, -10) {Title \the \TitleHeight, Author \the \AuthorHeight, title \the \titleheight}; 
+% Settings for blocks
+\normalsize
+% \setlength{\TP@blocktop}{\titleposbottom-\TP@titletoblockverticalspace}
+% \setlength{\TP@titletoblockverticalspace}{4cm}
+\setlength{\TP@blocktop}{\titleposbottom-\TP@titletoblockverticalspace}
+}
+%...............................................................................
+\newcommand\maketitleNoLogo[1][]{%
+\setlength{\GipsalabTopWTitle}{\GipsalabW}
+\addtolength{\GipsalabTopWTitle}{-\GipsalabTopDeltaWGipsalabLogo}
+\addtolength{\GipsalabTopWTitle}{-\GipsalabTopH}
+\addtolength{\GipsalabTopWTitle}{-2\GipsalabTopDeltaW}
+\settoheight{\AuthorHeight}{\AuthorParbox{\GipsalabTopWTitle}{\@author}}
+\settodepth{\AuthorDepth}{\AuthorParbox{\GipsalabTopWTitle}{\@author}}
+\addtolength{\AuthorHeight}{\AuthorDepth}
+\setlength{\GipsalabTemp}{\GipsalabTopWTitle}
+\addtolength{\GipsalabTemp}{\GipsalabTopH}
+\addtolength{\GipsalabTemp}{\GipsalabTopDeltaW}
+\addtolength{\GipsalabTemp}{\GipsalabTopDeltaWGipsalabLogo}
+%
+% Top figure
+%
+\coordinate (O Top) at ($(-0.5\paperwidth, +0.5\paperheight) + (\GipsalabDeltaW,-\GipsalabTopH - \GipsalabDeltaW)$);
+\begin{scope}[shift=(O Top), ]
+\node at (0.7466 * \GipsalabTopHGipsalabLogo, \GipsalabTopH / 2) [inner sep=0pt] {\pgfuseimage{logoGipsalab}}; % Logo Gipsa-lab
+\fill [Gipsalab_violet] (\GipsalabTopDeltaWGipsalabLogo,0) -- (\GipsalabTemp, 0) -- (\GipsalabTemp, \GipsalabTopH) -- (\GipsalabTopH + \GipsalabTopDeltaWGipsalabLogo, \GipsalabTopH) -- cycle; % background figure 
+\node at (\GipsalabTemp - \GipsalabTopDeltaW, \GipsalabTopH / 2) [left,text width=\GipsalabTopWTitle, align=flush right, text=Gipsalab_beige] {\TitleParbox{\GipsalabTopWTitle}{\@title}}; % title 
+\node at (\GipsalabTemp - \GipsalabTopDeltaW, - \AuthorHeight / 2) [left,text width=\GipsalabTopWTitle, inner sep=0] {\AuthorParbox{\GipsalabTopWTitle}{\@author}}; % author 
+\fill [Gipsalab_violet] (\GipsalabTemp + 1 * \GipsalabTopDeltaW, - \AuthorHeight) rectangle (\GipsalabTemp + 2 *  \GipsalabTopDeltaW, \GipsalabTopH); % Vertical bar
+\end{scope}
+%
+% Bottom figure
+%
+\coordinate (O Bottom) at ($(-0.5\paperwidth, -0.5\paperheight) + (\GipsalabDeltaW,\GipsalabDeltaW)$);
+\begin{scope}[shift=(O Bottom), ]
+\fill [Gipsalab_violet] (0,0) -- (\GipsalabBottomWBox - \GipsalabBottomH,0) -- (\GipsalabBottomWBox, \GipsalabBottomH) -- (0,\GipsalabBottomH) -- cycle; 
+\node at (\GipsalabBottomDeltaW, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoDpt}}; % figure
+\node at (\GipsalabBottomWBox, \GipsalabBottomH / 2) [color=Gipsalab_beige, left, text width=\GipsalabBottomWAddress,align=flush left] {\GipsalabAddress}; 
+\node at (\GipsalabBottomDeltaW + \GipsalabBottomWBox, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoCNRS}}; 
+\node at (2 * \GipsalabBottomDeltaW + \GipsalabBottomWBox + 1 * \GipsalabBottomHLogos, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoINPG}}; 
+\node at (3 * \GipsalabBottomDeltaW + \GipsalabBottomWBox + 2.497 * \GipsalabBottomHLogos, \GipsalabBottomH / 2) [inner sep=0pt, right] {\pgfuseimage{logoUGA}}; 
+\end{scope}
+% #1 keys
+\normalsize
+\setkeys{title}{#1}
+% Compute title position
+\setlength{\titleheight}{\GipsalabTopH}
+\addtolength{\titleheight}{\AuthorHeight}
+% \setlength{\TP@titletotopverticalspace}{4cm}
+\setlength{\titleposleft}{-0.5\titlewidth}
+\setlength{\titleposright}{\titleposleft+\titlewidth}
+\setlength{\titlepostop}{0.5\textheight-\TP@titletotopverticalspace}
+\setlength{\titleposbottom}{\titlepostop-\titleheight}
+% \node at (-10, -10) {Title \the \TitleHeight, Author \the \AuthorHeight, title \the \titleheight}; 
+% Settings for blocks
+\normalsize
+% \setlength{\TP@blocktop}{\titleposbottom-\TP@titletoblockverticalspace}
+% \setlength{\TP@titletoblockverticalspace}{4cm}
+\setlength{\TP@blocktop}{\titleposbottom-\TP@titletoblockverticalspace}
+}
+%...............................................................................
+
+%_______________________________________________________________________________
