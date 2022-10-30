@@ -96,6 +96,10 @@
 %Title, author, etc
 
 
+\newcommand{\footleft}{martin.gjorgjevski@gipsa-lab.grenoble-inp.fr}
+\newcommand{\footright}{\footnotesize This work was supported in part by blah blah}
+
+
 
 
 \title{Graphical Nadaraya-Watson Estimator on Latent Position Models}
@@ -220,7 +224,7 @@ Suprisingly, we can compute
         R_I(x)=
         \frac{1}{|I|+\sum_{j\notin I}a(x,X_i)}
     \end{equation*}
-    For all pairs of \textbf{disjoint} subsets $I,J\subseteq$[n] we have
+    \small For all pairs of \textbf{disjoint} subsets $I,J\subseteq$[n] we have
     \begin{equation*}
     R_J(x)\prod_{i\in I}a(x,X_i)=R_{I\cup J}(x)\prod_{i\in I}a(x,X_i)
     \end{equation*}
@@ -232,23 +236,26 @@ Suprisingly, we can compute
     \end{itemize}
 \end{block}
 \begin{block}{MISE bound for convolutional kernels}
-    Convolutional kernels $k_n(x,z)=K(\frac{x-z}{h_n})$ with $K\colon\mathbb{R}^d\to [0,1]$, $h_n>0$.
-    \vspace{10pt}
-    %\mycolbackblue{
-    \textbf{Theorem}
-    \vspace{10pt}
+    Convolutional kernels $k_n(x,z)=K(\frac{x-z}{h_n})$ with $K\colon\mathbb{R}^d\to [0,1]$, $h_n>0$
+    \mycolbackwhite{\textbf{Theorem}
     \begin{itemize}
-        \small \item $K$ compactly supported 
-        \small \item $p(x)\geq p_0>0$ on $Q$ and $Q$ \textit{satisfies \myemph{interior cone condition}}
-        \small \item f is \textit{$\alpha$ Hölder continnous on $\supp{p}$}
-        \vspace{10pt}
-            \end{itemize}
-            \small then for sufficiently small bandwiths $h_n$ we have
+        \item $K$ compactly supported 
+        \item $p(x)\geq p_0>0$ on $Q$ and $Q$ \textit{satisfies \myemph{interior cone condition}}
+        \item f is \textit{$\alpha$ Hölder continnous on $\supp{p}$}
+        \end{itemize}
+        then for sufficiently small bandwiths $h_n$ we have
             \begin{equation*}
                 \mathbb{E}(\hat{f}_{GNW}(X)-f(X))^2\leq C_1(\alpha)h_n^{\alpha}+\frac{C(B,\sigma)}{nh_n^d}
-            \end{equation*}
-            %}
-    \end{block}
+            \end{equation*}}
+\end{block}
+\begin{block}{Simulations}
+    \begin{figure}
+        \includegraphics[width=0.3\textwidth]{trueSMALLsample.png}
+        \includegraphics[width=0.3\textwidth]{trueMEDsample.png}
+        \includegraphics[width=0.3\textwidth]{trueLARGEsample.png}
+        \caption{Comparison of \myemphr{NW} and \myemphh{GNW} estimators: Left - sample size of $n=100$, center - sample size of $n=500$, right -sample size of $n=2000$}
+    \end{figure}
+\end{block}
 
 
 \end{column}

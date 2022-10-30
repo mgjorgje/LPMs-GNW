@@ -1,17 +1,21 @@
 \RequirePackage{tikz}
 \newcommand{\footimage}[1]{\def\footim@ge{#1}}
 \usefonttheme[onlymath]{serif}
-\setbeamertemplate{headline}{  
-  \begin{beamercolorbox}[wd=\textwidth]{headline}
-     \vskip2em\centering
-     \parbox{\linewidth}{\normalbaselines\centering\usebeamercolor{title in headline}\color{fg}{\bfseries\rmfamily\huge\inserttitle\par}}%
-     \vskip2em
-  \end{beamercolorbox}
+
+
+
+% Make some changes here
+%\setbeamertemplate{headline}{  
+ % \begin{beamercolorbox}[wd=\textwidth]{headline}
+  %   \vskip2em\centering
+   %  \parbox{\linewidth}{\normalbaselines\centering\usebeamercolor{title in headline}\color{fg}{\bfseries\rmfamily\huge\inserttitle\par}}%
+    % \vskip2em
+  %\end{beamercolorbox}
   
-  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
-    \rule{0pt}{1em}
-  \end{beamercolorbox}
-}
+ % \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+  %  \rule{0pt}{1em}
+ % \end{beamercolorbox}
+%}
 
 \setbeamerfont{structure}{series=\bf,family=\sffamily,size=\Large}
 
@@ -32,26 +36,89 @@
   \begin{beamercolorbox}[colsep*=.75ex,sep=.75ex,vmode]{block body}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
   }
+
+\setbeamertemplate{headline}{
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      
+      
+      \begin{column}{0.65\paperwidth}
+        \vskip3ex
+        \raggedleft
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\Large{\inserttitle}}\\}
+        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\}
+        \usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}\\}
+        %\vskip2ex
+      \end{column}
+      \begin{column}{.35\paperwidth}
+        \centering
+        \vspace{10pt}
+        \includegraphics[height=6cm]{cnrs.png}
+        \includegraphics[height=6cm]{logo-gipsa-bas-BD_transparent.png}
+        \vspace{10pt}
+      \end{column}
+%      \begin{column}{.2\paperwidth}
+%      \raggedleft
+%      \vskip4ex
+%      \usebeamercolor{infos}{\color{fg}\textbf{\small{\infos}}\\[1ex]}
+%      \end{column}
+%      \begin{column}{.03\paperwidth}
+%      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+
 \setbeamertemplate{block end}{
   \end{beamercolorbox}\vskip1ex
 }
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamerfont{footline}{size=\small,family=\rmfamily}
+
+
+
 \setbeamertemplate{footline}{
   \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
-    \rule{0pt}{.5em}
+    \rule{0pt}{2pt}
   \end{beamercolorbox}
-   \begin{beamercolorbox}[wd=\paperwidth]{footline}
-     \vskip1.5ex
-     \hspace{1em}\usebeamercolor{author in footline}{\bfseries\large\insertauthor}\par\vskip1ex
-     \hspace{1em}{\small\ttfamily\bfseries\insertshortauthor}\par\vskip.8ex
-     \hspace{1em}\usebeamercolor{institute in footline}{\color{fg}\small\bfseries\insertinstitute}\vskip1ex
-   \end{beamercolorbox}
+  \leavevmode%
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
+    \usebeamercolor{website in footline}{\color{fg} \footleft}
+    \hfill
+    \usebeamercolor{email in footline}{\color{fg} \footright}
+    \vskip1ex
+  \end{beamercolorbox}
+  \vskip0pt%
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+
+
+
+
+%\setbeamertemplate{footline}{
+ % \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+  %  \rule{0pt}{.5em}
+  %\end{beamercolorbox}
+  % \begin{beamercolorbox}[wd=\paperwidth]{footline}
+   %  \vskip1.5ex
+    % \hspace{1em}\usebeamercolor{author in footline}{\bfseries\large\insertauthor}\par\vskip1ex
+     %\hspace{1em}{\small\ttfamily\bfseries\insertshortauthor}\par\vskip.8ex
+     %\hspace{1em}\usebeamercolor{institute in footline}{\color{fg}\small\bfseries\insertinstitute}\vskip1ex
+   %\end{beamercolorbox}
 %
 \ifdefined\footim@ge
   \tikz[overlay,remember picture]%
   \node[anchor=south east,inner sep=0pt] at (current page.south east) %
   {\footim@ge};
 \fi
-}
+%}
