@@ -110,8 +110,8 @@ CE23-0006}
 
 
 \title{Graphical Nadaraya-Watson Estimator on Latent Position Models}
-\author{Martin Gjorgjevski$^1$, Nicolas Keriven$^1$, Simon Barthelme$^1$, Yohann De Castro$^2$}
-\institute{$^1$CNRS, Gipsa-Lab, Grenoble, $^2$Ecole Centrale Lyon, Lyon}
+\author{Martin Gjorgjevski$^1$, Nicolas Keriven$^1$, Simon Barthelmé$^1$, Yohann De Castro$^2$}
+\institute{$^1$CNRS, Gipsa-Lab, Grenoble, $^2$École Centrale Lyon, Lyon}
 
 
 
@@ -266,8 +266,11 @@ The $L^2$ risk of the \myemphr{NW} estimator admits the bias-variance decomposit
         R_I(x)=
         \frac{1}{|I|+\sum_{j\notin I}a(x,X_i)}
     \end{equation*}
+    \small with the convention that $1/0=0$
+    \\
+    \vspace{10pt}
     \small For all pairs of \textbf{disjoint} subsets $I,J\subseteq$[n] we have
-    \begin{equation*}
+    \begin{equation*}    
     R_J(x)\prod_{i\in I}a(x,X_i)=R_{I\cup J}(x)\prod_{i\in I}a(x,X_i)
     \end{equation*}
     \small and $R_{I\cup J}(x)$ is \textbf{\textit{independent}} from $\{a(x,X_i)|i\in I\}$.
