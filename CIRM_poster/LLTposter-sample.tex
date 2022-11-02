@@ -88,6 +88,11 @@
 \end{minipage}
 }
 
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+
 
 
 \DeclareMathOperator\supp{supp}
@@ -100,12 +105,13 @@
 
 
 \newcommand{\footleft}{martin.gjorgjevski@gipsa-lab.grenoble-inp.fr}
-\newcommand{\footright}{\footnotesize This work was supported in part by blah blah}
+\newcommand{\footright}{\footnotesize This work was partly supported by ANR GRandMa ANR-21-
+CE23-0006}
 
 
 \title{Graphical Nadaraya-Watson Estimator on Latent Position Models}
 \author{Martin Gjorgjevski$^1$, Nicolas Keriven$^1$, Simon Barthelme$^1$, Yohann De Castro$^2$}
-\institute{$^1$CNRS Gipsa-Lab, Grenoble, $^2$CNRS Ecole Centrale Lyon, Lyon}
+\institute{$^1$CNRS, Gipsa-Lab, Grenoble, $^2$Ecole Centrale Lyon, Lyon}
 
 
 
@@ -143,7 +149,7 @@
 
 \begin{block}{Summary}
     The \textit{\myemphh{Graphical Nadaraya Watson}} Estimator $\hat{f}_{GNW}$ is a signal averaging estimator on graphs, inspired by the \textit{\myemphr{Nadaraya-Watson Estimator}} $\hat{f}_{NW}$ in nonparametric estimation. 
-    We study concentration properties and risk decay rates of $\hat{f}_{GNW}$ in terms of the growth of the degree of the node. Under mild assumptions on the signal, the estimator concentrates with a rate inversly proportional to the node degree, For smooth signals $\hat{f}_{GNW}$ and $\hat{f}_{NW}$ achieve similar risk rates.    
+    We study concentration properties and risk decay rates of $\hat{f}_{GNW}$ in terms of the growth of the degree of the node. Under mild assumptions on the signal, the estimator concentrates with a rate \textit{inversly} proportional to the node \textbf{degree}. For smooth signals $\hat{f}_{GNW}$ and $\hat{f}_{NW}$ achieve similar risk rates.    
 \end{block}    
 
 \begin{columns}[T]
@@ -152,10 +158,10 @@
 
 %%%% First Column
 \begin{column}{0.49\textwidth}
-\begin{block}{Framework: \textit{Latent Position Models}}
+\begin{block}{Framework: \textit{Latent Position Models} \hspace*{\fill}{\large{\rom{1}}\qquad}}
 \begin{itemize}
-\item $X_1,...X_n,X$ i.i.d. $\sim p$, $p$ a density on $\mathbb{R}^d$
-\textit{not observed}
+\item $X_1,...X_n,X$ i.i.d. $\sim p$, $p$ a density on $\mathbb{R}^d$ 
+\textit{\textbf{not observed}}
 \vspace{10pt}
 \item $k_n:\mathbb{R}^d\to [0,1]$ \textit{probability kernel} 
 \vspace{10pt}
@@ -179,13 +185,13 @@
 
 
 \end{block}
-\begin{block}{Main result: \myemphBLACK{A Sharp Variance Bound}}
+\begin{block}{Main result: \myemphBLACK{A Sharp Variance Bound} \hspace*{\fill}{\large{\rom{3}}\qquad}}
 LLN heuristics: by setting $b_n(f,x)=\dfrac{\int f(z)k_n(x,z)p(z)dz}{\int k_n(x,z)p(z)dz}$ we have 
 \begin{equation*}
     \hat{f}_{GNW}(x)\sim b_n(f,x)
 \end{equation*}
 \vspace{10pt}
-Suprisingly, we can compute
+\textit{\textbf{Suprisingly}}, we can compute
 \begin{equation*}
     \mathbb{E}(\hat{f}_{GNW}(x))=b_n(f,x)(1-(1-\frac{d_n(x)}{n})^n)
 \end{equation*}
@@ -225,7 +231,7 @@ We focus on bounding $\mathbb{E}(\hat{f}_{GNW}(x)-b_n(f,x))^2$ instead of $\math
 %%%% Second Column
 
 \begin{column}{0.49\textwidth}
-\begin{block}{The \myemphr{NW} and \myemphh{GNW} estimators}
+\begin{block}{The \myemphr{NW} and \myemphh{GNW} estimators \hspace*{\fill}{\large{\rom{2}}\qquad}}
 When the positions $X_1,....X_n$ are known, a popular approach is \myemphr{Nadaraya-Watson} Estimator
 \begin{equation*}
     \hat{f}_{NW}(X)=\frac{\sum_{i=1}^n Y_iK(\frac{X-X_i}{h_n})}{\sum_{i=1}^n K(\frac{X-X_i}{h_n})}
@@ -252,8 +258,10 @@ The $L^2$ risk of the \myemphr{NW} estimator admits the bias-variance decomposit
 \end{center}
 }
 \end{block}
-\begin{block}{Proof Sketch - the Decoupling trick}
-   \small For $I\subseteq [n]$. Define\footnote{with the convention that $1/0=0$}  
+\begin{block}{Proof Sketch - the Decoupling trick
+    \hspace*{\fill}{\large{\rom{4}}\qquad}}
+
+   \small For $I\subseteq [n]$. Define %\footnote{with the convention that $1/0=0$}  
     \small \begin{equation*}
         R_I(x)=
         \frac{1}{|I|+\sum_{j\notin I}a(x,X_i)}
@@ -268,15 +276,19 @@ The $L^2$ risk of the \myemphr{NW} estimator admits the bias-variance decomposit
         \small \item "linearized" representation 
      $\hat{f}_{GNW}(x)=\sum_{i=1}^nY_ia(x,X_i)R_i(x)$ 
         \small \item concentration inequalities
+        \small \item \textit{Specific to \textbf{Bernoulli} variables}
     \end{itemize}
 \end{block}
-\begin{block}{MISE bound for convolutional kernels}
+\begin{block}{MISE bound for \textit{convolutional} kernels
+
+    \hspace*{\fill}{\large{\rom{5}}\qquad}}
     Convolutional kernels $k_n(x,z)=K(\frac{x-z}{h_n})$ with $K\colon\mathbb{R}^d\to [0,1]$, $h_n>0$
+    \vspace{10pt}
     \mycolbackwhite{\textbf{Theorem}
     \vspace{10pt}
     \begin{itemize}
         \item $K$ compactly supported 
-        \item $p(x)\geq p_0>0$ on $Q$ and $Q$ \textit{satisfies \myemph{interior cone condition}}
+        \item $p(x)\geq p_0>0$ on $\supp{p}$ and $\supp{p}$ \textit{satisfies \myemph{interior cone condition}}
         \item f is \textit{$\alpha$ Hölder continnous on $\supp{p}$}
     \end{itemize}
     then for sufficiently small bandwiths $h_n$ we have
@@ -286,13 +298,17 @@ The $L^2$ risk of the \myemphr{NW} estimator admits the bias-variance decomposit
 \end{block}
 
 
-\begin{block}{Simulations}
+\begin{block}{Simulations
+    
+    \hspace*{\fill}{\large{\rom{6}}\qquad}}
+    
+    
     \begin{figure}
         \centering
         \includegraphics[width=0.3\textwidth]{trueSMALLsample.png}
         \includegraphics[width=0.3\textwidth]{trueMEDsample.png}
         \includegraphics[width=0.3\textwidth]{trueLARGEsample.png}
-        \caption{\myemphr{NW} vs \myemphh{GNW} estimators: Left- sample size n=100, center- sample size= 500mm right- sample size n=2000}
+        \caption{\myemphr{NW} vs \myemphh{GNW} estimators: Left- sample size n=100, center- sample size= 500, right- sample size n=2000}
     \end{figure}
     
 \end{block}
@@ -305,7 +321,7 @@ The $L^2$ risk of the \myemphr{NW} estimator admits the bias-variance decomposit
     \item[{[1]}] B. Tsybakov. \textbf{Introduction to Nonparametric Estimation.} 1st.
     Springer Publishing Company
     \item[{[2]}] Vershynin. \textbf{High-Dimensional Probability: An Introduction with Applications in Data Science}. Cambridge University Press, 2018
-    \item[{[3]}] [HRH02] Peter D Hoff, Adrian E Raftery, and Mark S Handcock. \textbf{Latent Space Ap-
+    \item[{[3]}] Peter D Hoff, Adrian E Raftery, and Mark S Handcock. \textbf{Latent Space Ap
     proaches to Social Network Analysis}. Journal of the American Statistical
     Association 97.460 (2002)
     \end{itemize}
